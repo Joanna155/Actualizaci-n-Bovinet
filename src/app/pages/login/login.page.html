@@ -1,0 +1,91 @@
+<ion-content class="login-content">
+  <div class="login-container">
+    <!-- Header con logo y título -->
+    <div class="header-section">
+      <div class="logo-container">
+        <div class="cow-icon">
+          <img src="../../../assets/img/logo/Bovinet1.png" alt="Logo Bovinet">
+        </div>
+      </div>
+      <h1 class="app-title">BOVINET</h1>
+      <p class="app-subtitle">Sistema de Gestión Ganadera</p>
+    </div>
+
+    <!-- Formulario de login -->
+    <div class="login-form-container">
+      <div class="form-card">
+        <!-- Campos de entrada -->
+        <div class="input-section">
+          <!-- Campo Usuario -->
+          <div class="input-group">
+            <div class="input-container">
+              <ion-icon name="person-outline" class="input-icon"></ion-icon>
+              <ion-input
+                [(ngModel)]="username"
+                placeholder="Usuario"
+                type="text"
+                class="custom-input"
+                [class.filled]="username"
+                (ionInput)="onInputChange()"
+              ></ion-input>
+            </div>
+          </div>
+
+          <!-- Campo Contraseña -->
+          <div class="input-group">
+            <div class="input-container">
+              <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+              <ion-input
+                [(ngModel)]="password"
+                placeholder="Contraseña"
+                [type]="showPassword ? 'text' : 'password'"
+                class="custom-input"
+                [class.filled]="password"
+                (ionInput)="onInputChange()"
+              ></ion-input>
+              <ion-button
+                fill="clear"
+                size="small"
+                class="password-toggle"
+                (click)="togglePasswordVisibility()"
+              >
+                <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Opciones adicionales -->
+        <div class="form-options">
+          <div class="remember-section">
+            <ion-checkbox [(ngModel)]="rememberMe" class="custom-checkbox"></ion-checkbox>
+            <span class="remember-text">No recuerda la contraseña</span>
+          </div>
+        </div>
+
+        <!-- Botón de login -->
+        <ion-button
+          expand="block"
+          class="login-button"
+          (click)="login()"
+          [disabled]="!username || !password"
+        >
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
+          INICIAR SESIÓN
+        </ion-button>
+
+        <!-- Enlace de registro -->
+        <div class="register-section">
+          <span class="register-text">¿No tienes cuenta?</span>
+          <a href="/app/registro.contacto.page.html" class="register-link">Regístrate Con Nosotros</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section">
+     <!-- <p class="ranch-name">RANCHO LA VAQUITA FELIZ</p>-->
+      <p class="version-info">Versión 1.0.0 - Modo Offline</p>  
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,389 @@
+.login-content {
+  --background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  transition: all 0.3s ease;
+}
+
+.logo-container {
+  margin-bottom: 30px;
+}
+
+.cow-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 50%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.cow-icon img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.app-title {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+ transition: all 0.3s ease;
+
+}
+
+.app-subtitle {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Form Container */
+.login-form-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Input Section */
+.input-section {
+  margin-bottom: 25px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  position: relative;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 56px;
+}
+
+.input-container:focus-within {
+  border-color: #2c5530;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(44, 85, 48, 0.1);
+  transform: translateY(-2px);
+}
+
+.input-icon {
+  color: #6c757d;
+  font-size: 1.3rem;
+  margin-right: 12px;
+  transition: color 0.3s ease;
+}
+
+.input-container:focus-within .input-icon {
+  color: #2c5530;
+}
+
+.custom-input {
+  --background: transparent;
+  --color: #2d3748;
+  --placeholder-color: #a0aec0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-size: 1rem;
+  flex: 1;
+  font-weight: 500;
+}
+
+.custom-input.filled {
+  --color: #2d3748;
+}
+
+.password-toggle {
+  --color: #6c757d;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin: 0;
+}
+
+.password-toggle:hover {
+  --color: #2c5530;
+}
+
+/* Form Options */
+.form-options {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.remember-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.custom-checkbox {
+  --size: 20px;
+  --checkmark-color: white;
+  --background-checked: #2c5530;
+  --border-color-checked: #2c5530;
+  --border-radius: 4px;
+}
+
+.remember-text {
+  font-size: 0.95rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Login Button */
+.login-button {
+  --background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+  --background-hover: linear-gradient(135deg, #244328 0%, #3d6a4a 100%);
+  --color: white;
+  --border-radius: 12px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 25px rgba(44, 85, 48, 0.3);
+  letter-spacing: 0.5px;
+  height: 56px;
+}
+
+.login-button:not([disabled]):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(44, 85, 48, 0.4);
+}
+
+.login-button[disabled] {
+  --background: #cbd5e0;
+  --color: #718096;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Register Section */
+.register-section {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.register-text {
+  font-size: 0.95rem;
+  color: #718096;
+  margin-right: 8px;
+}
+
+.register-link {
+  font-size: 0.95rem;
+  color: #2c5530;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.register-link:hover {
+  color: #244328;
+  text-decoration: underline;
+}
+
+/* Footer Section */
+.footer-section {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px 0;
+}
+
+.ranch-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+
+.version-info {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ==== RESPONSIVE DESIGN ==== */
+
+/* Tablets en orientación horizontal */
+@media (min-width: 768px) and (orientation: landscape) {
+  .login-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 60px;
+    padding: 40px;
+  }
+
+  .header-section {
+    margin: 0;
+    flex: 1;
+    max-width: 400px;
+  }
+
+  .header-section .app-title {
+    font-size: 3.5rem;
+  }
+
+  .header-section .app-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .login-form-container {
+    flex: 1;
+    max-width: 450px;
+  }
+
+  .form-card {
+    max-width: none;
+    padding: 50px 40px;
+  }
+}
+
+/* Tablets en orientación vertical */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .login-container {
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .header-section {
+    margin-top: 80px;
+  }
+
+  .header-section .app-title {
+    font-size: 3.2rem;
+  }
+
+  .form-card {
+    max-width: 500px;
+    padding: 45px 35px;
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1024px) {
+  .login-container {
+    gap: 80px;
+    padding: 60px;
+  }
+
+  .header-section .app-title {
+    font-size: 4rem;
+  }
+
+  .form-card {
+    max-width: 480px;
+    padding: 50px 40px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 767px) {
+  .login-container {
+    padding: 20px;
+  }
+
+  .header-section {
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+
+  .header-section .app-title {
+    font-size: 2.5rem;
+  }
+
+  .cow-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .cow-icon img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .form-card {
+    padding: 30px 25px;
+  }
+}
+
+/* Pantallas muy pequeñas en altura */
+@media (max-height: 600px) and (orientation: landscape) {
+  .login-container {
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .header-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .header-section .app-title {
+    font-size: 2.2rem;
+  }
+
+  .form-card {
+    padding: 25px 20px;
+  }
+}
+
+/* Transiciones suaves */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
