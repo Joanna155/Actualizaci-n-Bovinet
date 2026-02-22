@@ -1,0 +1,805 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: #A4C49A; ">
+    <ion-title>
+      <div class="header-content">
+        <div class="header-left">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <strong>BOVINET</strong>
+        </div>
+        <div class="header-right">
+          <span>RANCHO LA VAQUITA FELIZ</span>
+          <span class="event-count">{{ totalEventos }} EVENTOS</span>
+          <ion-button fill="clear" (click)="mostrarOpcionesReporte()" class="report-btn">
+          <ion-icon src="assets/icon/pdf-icon.svg"></ion-icon>
+           Reportes
+          </ion-button>
+          <ion-icon name="log-out-outline" (click)="logout()" class="logout-btn"></ion-icon>
+        </div>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="calendar-content">
+  <!-- Contenedor principal con bordes redondeados -->
+  <div class="main-container">
+    
+    <!-- Sección de encabezado con botón registrar evento -->
+    <div class="calendar-header">
+      <h2 class="calendar-title">Calendario de Control</h2>
+      <ion-button 
+        class="register-event-btn"
+        (click)="openAddModal()"
+        style="--color: #000000 !important; color: #000000 !important;">
+        <ion-icon name="add-outline" slot="start" style="color: #000000 !important;"></ion-icon>
+        <span style="color: #000000 !important; font-weight: 600;">Registrar Evento</span>
+      </ion-button>
+    </div>
+
+    <!-- Acciones Rápidas - Ciclo Reproductivo -->
+    <div class="quick-actions-section">
+      <h3>Acciones Rápidas - Ciclo Reproductivo</h3>
+      <div class="quick-actions-grid">
+        <ion-button class="parto-btn" (click)="openPartoModal()">
+          <ion-icon name="flower-outline"></ion-icon>
+          Registrar Parto
+        </ion-button>
+        
+        <ion-button class="repro-btn" color="success" (click)="openReproduccionModal()">
+          <ion-icon name="heart-outline"></ion-icon>
+          Monta/Inseminación
+        </ion-button>
+        
+        <ion-button color="warning" (click)="openEstadoModal()">
+          <ion-icon name="medkit-outline"></ion-icon>
+          Cambiar Estado
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Estadísticas rápidas -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <ion-icon name="calendar-outline"></ion-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-number">{{ totalEventos }}</span>
+          <span class="stat-label">Total Eventos</span>
+        </div>
+      </div>
+      
+      <div class="stat-card pending">
+        <div class="stat-icon">
+          <ion-icon name="time-outline"></ion-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-number">{{ eventosPendientes }}</span>
+          <span class="stat-label">Pendientes</span>
+        </div>
+      </div>
+      
+      <div class="stat-card today">
+        <div class="stat-icon">
+          <ion-icon name="today-outline"></ion-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-number">{{ eventosHoy }}</span>
+          <span class="stat-label">Hoy</span>
+        </div>
+      </div>
+
+      <!-- Nueva estadística para animales en ciclo reproductivo -->
+      <div class="stat-card reprod">
+        <div class="stat-icon">
+          <ion-icon name="leaf-outline"></ion-icon>
+        </div>
+        <div class="stat-info">
+          <span class="stat-number">{{ animalesEnCiclo }}</span>
+          <span class="stat-label">En Ciclo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navegación de vista -->
+    <div class="view-navigation">
+      <div class="custom-segment-container">
+        <div class="segment-option" 
+             [class.active]="viewMode === 'list'" 
+             (click)="setViewMode('list')">
+          <ion-icon name="list-outline"></ion-icon>
+          <span>Lista</span>
+        </div>
+        <div class="segment-option" 
+             [class.active]="viewMode === 'calendar'" 
+             (click)="setViewMode('calendar')">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <span>Calendario</span>
+        </div>
+        <div class="segment-indicator" [class.calendar-active]="viewMode === 'calendar'"></div>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filters-section">
+      <div class="filter-row">
+        <ion-select 
+          placeholder="Filtrar por tipo"
+          [value]="selectedTipoFilter"
+          (ionChange)="onTipoFilterChange($event)"
+          class="custom-select"
+          interface="alert">
+          <ion-select-option value="Todos">Todos los tipos</ion-select-option>
+          <ion-select-option value="Celo">Celo</ion-select-option>
+          <ion-select-option value="Vacunación">Vacunación</ion-select-option>
+          <ion-select-option value="Inseminación">Inseminación</ion-select-option>
+          <ion-select-option value="Parto">Parto</ion-select-option>
+          <ion-select-option value="Secado">Secado</ion-select-option>
+          <ion-select-option value="Reto">Reto</ion-select-option>
+          <ion-select-option value="Test Preñez">Test de Preñez</ion-select-option>
+          <ion-select-option value="Revisión">Revisión</ion-select-option>
+        </ion-select>
+        
+        <ion-select 
+          placeholder="Filtrar por estado"
+          [value]="selectedEstadoFilter"
+          (ionChange)="onEstadoFilterChange($event)"
+          class="custom-select"
+          interface="alert">
+          <ion-select-option value="Todos">Todos los estados</ion-select-option>
+          <ion-select-option value="Programado">Programado</ion-select-option>
+          <ion-select-option value="Pendiente">Pendiente</ion-select-option>
+          <ion-select-option value="Realizado">Realizado</ion-select-option>
+          <ion-select-option value="Alerta">Alerta</ion-select-option>
+        </ion-select>
+
+        <ion-select 
+          placeholder="Filtrar por animal"
+          [value]="selectedAnimalFilter"
+          (ionChange)="onAnimalFilterChange($event)"
+          class="custom-select"
+          interface="alert">
+          <ion-select-option value="Todos">Todos los animales</ion-select-option>
+          <ion-select-option *ngFor="let animal of animals" [value]="animal.id">
+            {{ animal.nombre }} ({{ animal.id }})
+          </ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+
+    <!-- Leyenda de colores actualizada -->
+    <div class="legend-section">
+      <div class="legend-grid">
+        <div class="legend-item">
+          <div class="legend-dot celo"></div>
+          <span>Celo</span>
+          <small>Detectado automáticamente</small>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot vacunacion"></div>
+          <span>Vacunación</span>
+          <div class="legend-status">
+            <small class="programada">📅 Programada</small>
+            <small class="realizada">✅ Realizada</small>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot inseminacion"></div>
+          <span>Inseminación</span>
+          <div class="legend-status">
+            <small class="pendiente">⏳ Pendiente</small>
+            <small class="realizada">✅ Realizada</small>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot parto"></div>
+          <span>Parto</span>
+          <div class="legend-status">
+            <small class="programado">📅 Programado</small>
+            <small class="alerta">⚠️ Alerta</small>
+            <small class="realizada">✅ Realizada</small>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot secado"></div>
+          <span>Secado</span>
+          <small>Preparación para parto</small>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot reto"></div>
+          <span>Reto</span>
+          <small>Próximo a parto</small>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot test-prenez"></div>
+          <span>Test Preñez</span>
+          <small>Diagnóstico de gestación</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de eventos -->
+    <div class="events-container" *ngIf="viewMode === 'list'">
+      <div class="events-list">
+        <div *ngFor="let evento of filteredEventos" 
+             class="event-card" 
+             [class.overdue]="isEventOverdue(evento)"
+             [class.protocolo]="evento.protocoloParto"
+             (click)="openEditModal(evento)">
+          
+          <div class="event-main">
+            <div class="event-indicator" [style.background-color]="getEventColor(evento.tipo)">
+              <ion-icon [name]="getEventIcon(evento.tipo)"></ion-icon>
+              <div class="protocolo-badge" *ngIf="evento.protocoloParto">⚙️</div>
+            </div>
+            
+            <div class="event-info">
+              <div class="event-header-info">
+                <h3 class="event-type">{{ evento.tipo }}</h3>
+                <div class="event-status-container">
+                  <ion-badge [color]="getStatusColor(evento.estado)" class="event-status">
+                    {{ evento.estado }}
+                  </ion-badge>
+                  <span class="dias-post-parto" *ngIf="evento.diasPostParto !== undefined">
+                    DPP: {{ evento.diasPostParto }}
+                  </span>
+                </div>
+              </div>
+              
+              <p class="event-animal">{{ evento.animalNombre }} ({{ evento.animalId }})</p>
+              <p class="event-date">{{ formatDate(evento.fecha) }} - {{ evento.fecha }}</p>
+              
+              <div class="event-notes" *ngIf="evento.notas">
+                <strong>Notas:</strong> {{ evento.notas }}
+              </div>
+
+              <!-- Información adicional para eventos de protocolo -->
+              <div class="protocolo-info" *ngIf="evento.protocoloParto && evento.diasPostParto !== undefined">
+                <small>Protocolo parto - Día {{ evento.diasPostParto }}</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-actions" (click)="$event.stopPropagation()">
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              color="success"
+              *ngIf="evento.estado !== 'Realizado'"
+              (click)="markAsCompleted(evento)">
+              <ion-icon name="checkmark-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              color="primary"
+              (click)="openEditModal(evento)">
+              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              color="danger"
+              (click)="confirmDelete(evento)">
+              <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensaje cuando no hay eventos -->
+      <div *ngIf="filteredEventos.length === 0" class="no-events">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <h3>No hay eventos</h3>
+        <p>No se encontraron eventos con los filtros seleccionados</p>
+        <ion-button color="success" (click)="openAddModal()">
+          <ion-icon name="add-outline" slot="start"></ion-icon>
+          Agregar Primer Evento
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Vista de calendario funcional -->
+    <div class="calendar-view" *ngIf="viewMode === 'calendar'">
+      <!-- Header del calendario con navegación -->
+      <div class="calendar-nav">
+        <ion-button fill="clear" (click)="previousMonth()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </ion-button>
+        
+        <div class="month-year">
+          <h3>{{ getMonthName(currentMonth) }} {{ currentYear }}</h3>
+        </div>
+        
+        <ion-button fill="clear" (click)="nextMonth()">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- Días de la semana -->
+      <div class="calendar-weekdays">
+        <div class="weekday" *ngFor="let day of weekDays">{{ day }}</div>
+      </div>
+
+      <!-- Grid del calendario -->
+      <div class="calendar-grid">
+        <div 
+          *ngFor="let day of calendarDays" 
+          class="calendar-day"
+          [class.other-month]="!day.isCurrentMonth"
+          [class.today]="day.isToday"
+          [class.has-events]="day.events.length > 0"
+          (click)="selectDay(day)">
+          
+          <div class="day-number">{{ day.day }}</div>
+          
+          <!-- Indicadores de eventos -->
+          <div class="event-indicators" *ngIf="day.events.length > 0">
+            <div 
+              *ngFor="let event of day.events.slice(0, 3)" 
+              class="event-dot"
+              [style.background-color]="getEventColor(event.tipo)"
+              [title]="event.tipo + ' - ' + event.animalNombre">
+            </div>
+            <div *ngIf="day.events.length > 3" class="more-events">
+              +{{ day.events.length - 3 }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel de eventos del día seleccionado -->
+      <div class="selected-day-events" *ngIf="selectedDay">
+        <div class="selected-day-header">
+          <h4>{{ formatSelectedDay(selectedDay) }}</h4>
+          <ion-button 
+            size="small" 
+            color="success" 
+            (click)="addEventToSelectedDay()">
+            <ion-icon name="add-outline" slot="start"></ion-icon>
+            Agregar Evento
+          </ion-button>
+        </div>
+
+        <div class="day-events-list" *ngIf="selectedDay.events.length > 0">
+          <div 
+            *ngFor="let event of selectedDay.events" 
+            class="day-event-item"
+            (click)="openEditModal(event)">
+            
+            <div class="event-color-bar" [style.background-color]="getEventColor(event.tipo)"></div>
+            
+            <div class="event-details">
+              <div class="event-title">{{ event.tipo }}</div>
+              <div class="event-animal">{{ event.animalNombre }} ({{ event.animalId }})</div>
+              <div class="event-status-container">
+                <ion-badge [color]="getStatusColor(event.estado)" class="event-status-small">
+                  {{ event.estado }}
+                </ion-badge>
+                <span class="dias-post-parto-small" *ngIf="event.diasPostParto !== undefined">
+                  DPP: {{ event.diasPostParto }}
+                </span>
+              </div>
+            </div>
+
+            <div class="event-actions-small">
+              <ion-button 
+                fill="clear" 
+                size="small" 
+                color="success"
+                *ngIf="event.estado !== 'Realizado'"
+                (click)="markAsCompleted(event); $event.stopPropagation()">
+                <ion-icon name="checkmark-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="no-events-day" *ngIf="selectedDay.events.length === 0">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <p>No hay eventos programados para este día</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para agregar/editar evento -->
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="success">
+          <ion-title>{{ isEditMode ? 'Editar Evento' : 'Registrar Evento' }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content class="modal-content">
+        <div class="form-container">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="stacked">Fecha *</ion-label>
+                  <ion-input 
+                    type="date"
+                    [(ngModel)]="currentEvento.fecha">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="stacked">Animal *</ion-label>
+                  <ion-select [(ngModel)]="currentEvento.animalId" interface="alert">
+                    <ion-select-option *ngFor="let animal of animals" [value]="animal.id">
+                      {{ animal.nombre }} ({{ animal.id }}) - {{ animal.sexo }}
+                      <span *ngIf="animal.ultimoParto"> - DPP: {{ animal.diasPostParto }}</span>
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="stacked">Tipo de Evento *</ion-label>
+                  <ion-select [(ngModel)]="currentEvento.tipo" interface="alert">
+                    <ion-select-option value="Celo">Celo</ion-select-option>
+                    <ion-select-option value="Vacunación">Vacunación</ion-select-option>
+                    <ion-select-option value="Inseminación">Inseminación</ion-select-option>
+                    <ion-select-option value="Parto">Parto</ion-select-option>
+                    <ion-select-option value="Secado">Secado</ion-select-option>
+                    <ion-select-option value="Reto">Reto</ion-select-option>
+                    <ion-select-option value="Test Preñez">Test de Preñez</ion-select-option>
+                    <ion-select-option value="Revisión">Revisión</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="stacked">Estado *</ion-label>
+                  <ion-select [(ngModel)]="currentEvento.estado" interface="alert">
+                    <ion-select-option value="Programado">Programado</ion-select-option>
+                    <ion-select-option value="Pendiente">Pendiente</ion-select-option>
+                    <ion-select-option value="Realizado">Realizado</ion-select-option>
+                    <ion-select-option value="Alerta">Alerta</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="stacked">Notas</ion-label>
+                  <ion-textarea 
+                    [(ngModel)]="currentEvento.notas" 
+                    placeholder="Observaciones del evento..."
+                    rows="3">
+                  </ion-textarea>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- Información adicional para eventos de parto -->
+            <ion-row *ngIf="currentEvento.tipo === 'Parto'">
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label>Generar protocolo completo de parto</ion-label>
+                  <ion-toggle [(ngModel)]="generarProtocoloParto" color="success"></ion-toggle>
+                </ion-item>
+                <small>Al activar esta opción, se generarán automáticamente todos los eventos del ciclo reproductivo</small>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <div class="modal-buttons">
+            <ion-button 
+              expand="block" 
+              color="success" 
+              (click)="saveEvento()">
+              <ion-icon name="save-outline" slot="start"></ion-icon>
+              {{ isEditMode ? 'Actualizar' : 'Registrar' }}
+            </ion-button>
+          </div>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Modal para registrar parto -->
+  <ion-modal [isOpen]="isPartoModalOpen" (didDismiss)="closePartoModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Registrar Parto</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closePartoModal()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content class="modal-content">
+        <div class="form-container">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="stacked">Animal *</ion-label>
+                  <ion-select [(ngModel)]="partoData.animalId" interface="alert">
+                    <ion-select-option *ngFor="let animal of animalsHembrasReproductivas" [value]="animal.id">
+                      {{ animal.nombre }} ({{ animal.id }}) - {{ animal.estadoReproductivo }}
+                      <span *ngIf="animal.ultimoParto"> - DPP: {{ animal.diasPostParto }}</span>
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="stacked">Fecha de Parto *</ion-label>
+                  <ion-input 
+                    type="date"
+                    [(ngModel)]="partoData.fecha">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="stacked">Raza</ion-label>
+                  <ion-select [(ngModel)]="partoData.raza" interface="alert">
+                    <ion-select-option value="Angus">Angus 🐂 (283 días) - Calidad de carne</ion-select-option>
+                    <ion-select-option value="Holstein">Holstein 🐄 (279 días) - Producción lechera</ion-select-option>
+                    <ion-select-option value="Jersey">Jersey 🐄 (279 días) - Leche con alta grasa</ion-select-option>
+                    <ion-select-option value="Hereford">Hereford 🐂 (285 días) - Raza rústica</ion-select-option>
+                    <ion-select-option value="Charoláis">Charoláis 🐂 (286 días) - Crecimiento rápido</ion-select-option>
+                    <ion-select-option value="Simental">Simental 🐄 (289 días) - Doble propósito</ion-select-option>
+                    <!-- NUEVAS RAZAS PENDIENTES -->
+                    <ion-select-option value="Brahman">Brahman 🐂 (282 días) - Resistente al calor</ion-select-option>
+                    <ion-select-option value="Suizo">Suizo 🐂 (290 días) - Alta producción lechera</ion-select-option>
+                    <ion-select-option value="Indubrasil">Indubrasil 🐄 (280 días) - Zebuina resistente</ion-select-option>
+                    <ion-select-option value="Guzerat">Guzerat 🐂 (291 días) - Longevo y fuerte</ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="stacked">Observaciones</ion-label>
+                  <ion-textarea 
+                    [(ngModel)]="partoData.observaciones" 
+                    placeholder="Observaciones del parto y cría..."
+                    rows="3">
+                  </ion-textarea>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <div class="protocolo-info">
+                  <h4>Protocolo que se generará automáticamente:</h4>
+                  <ul>
+                    <li>Día 7: Revisión post-parto</li>
+                    <li>Día 26: Primer celo (Amarillo)</li>
+                    <li>Día 52: Segundo celo (Verde)</li>
+                    <li>Día 85: Diagnóstico de vacía</li>
+                  </ul>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <div class="modal-buttons">
+            <ion-button 
+              expand="block" 
+              color="primary" 
+              (click)="confirmarParto()">
+              <ion-icon name="flower-outline" slot="start"></ion-icon>
+              Registrar Parto y Protocolo
+            </ion-button>
+          </div>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Modal para registrar reproducción -->
+  <ion-modal [isOpen]="isReproduccionModalOpen" (didDismiss)="closeReproduccionModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="success">
+          <ion-title>Registrar Reproducción</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeReproduccionModal()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content class="modal-content">
+        <div class="form-container">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="stacked">Tipo *</ion-label>
+                  <ion-segment [(ngModel)]="reproduccionData.tipo">
+                    <ion-segment-button value="Monta natural">
+                      <ion-label>Monta Natural</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button value="Inseminación">
+                      <ion-label>Inseminación</ion-label>
+                    </ion-segment-button>
+                  </ion-segment>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="stacked">Animal *</ion-label>
+                  <ion-select [(ngModel)]="reproduccionData.animalId" interface="alert">
+                    <ion-select-option *ngFor="let animal of animalsHembras" [value]="animal.id">
+                      {{ animal.nombre }} ({{ animal.id }})
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="stacked">Fecha *</ion-label>
+                  <ion-input 
+                    type="date"
+                    [(ngModel)]="reproduccionData.fecha">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-item>
+                  <ion-label position="stacked">Semental</ion-label>
+                  <ion-select [(ngModel)]="reproduccionData.semental" interface="alert">
+                    <ion-select-option value="">Seleccionar semental</ion-select-option>
+                    <ion-select-option *ngFor="let macho of animalsMachosReproductivos" [value]="macho.nombre">
+                      {{ macho.nombre }} ({{ macho.id }})
+                      <span *ngIf="macho.edad"> - {{ macho.edad }}</span>
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="stacked">Observaciones</ion-label>
+                  <ion-textarea 
+                    [(ngModel)]="reproduccionData.observaciones" 
+                    placeholder="Observaciones adicionales..."
+                    rows="2">
+                  </ion-textarea>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <div class="protocolo-info">
+                  <h4>Próximos eventos que se generarán:</h4>
+                  <ul>
+                    <li>21 días: Próximo celo estimado</li>
+                    <li>35 días: Test de preñez 1</li>
+                    <li>90 días: Test de preñez 2</li>
+                    <li>180 días: Test de preñez 3</li>
+                    <li>220 días: Secado</li>
+                    <li>259 días: Reto</li>
+                    <li>278-289 días: Parto estimado (según raza)</li>
+                  </ul>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <div class="modal-buttons">
+            <ion-button 
+              expand="block" 
+              color="success" 
+              (click)="confirmarReproduccion()">
+              <ion-icon name="heart-outline" slot="start"></ion-icon>
+              Registrar Reproducción
+            </ion-button>
+          </div>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="isEstadoModalOpen" (didDismiss)="closeEstadoModal()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="warning">
+        <ion-title>Cambiar Estado Reproductivo</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeEstadoModal()">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="modal-content">
+      <div class="form-container">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="stacked">Animal *</ion-label>
+                <ion-select [(ngModel)]="estadoModalData.animalId" interface="alert">
+                  <ion-select-option *ngFor="let animal of animalsHembras" [value]="animal.id">
+                    {{ animal.nombre }} ({{ animal.id }}) - {{ animal.estadoReproductivo || 'Sin estado' }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="stacked">Nuevo Estado *</ion-label>
+                <ion-select [(ngModel)]="estadoModalData.nuevoEstado" interface="alert">
+                  <ion-select-option value="Limpia">Limpia</ion-select-option>
+                  <ion-select-option value="Sucia">Sucia</ion-select-option>
+                  <ion-select-option value="A calor">A calor</ion-select-option>
+                  <ion-select-option value="Vacia">Vacia</ion-select-option>
+                  <ion-select-option value="Preñada">Preñada</ion-select-option>
+                  <ion-select-option value="Seca">Seca</ion-select-option>
+                  <ion-select-option value="Reto">Reto</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="estadoModalData.nuevoEstado === 'Sucia'">
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="stacked">Tratamiento *</ion-label>
+                <ion-textarea
+                  [(ngModel)]="estadoModalData.tratamiento"
+                  placeholder="Especificar tratamiento..."
+                  rows="2">
+                </ion-textarea>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="modal-buttons">
+          <ion-button expand="block" color="medium" (click)="closeEstadoModal()">
+            Cancelar
+          </ion-button>
+          <ion-button 
+            expand="block" 
+            color="warning" 
+            (click)="confirmarCambioEstado()"
+            [disabled]="!estadoModalData.animalId || !estadoModalData.nuevoEstado">
+            Cambiar Estado
+          </ion-button>
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+</ion-content>
