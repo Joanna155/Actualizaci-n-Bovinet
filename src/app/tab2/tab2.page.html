@@ -3,11 +3,24 @@
     <ion-title>
       <div class="header-content">
         <div class="header-left">
+<<<<<<< HEAD
           <strong>BOVINET</strong>
         </div>
         <div class="header-right">
           <span>RANCHO LA VAQUITA FELIZ</span>
           <span class="animal-count">{{ totalAnimals }} ANIMALES</span>
+=======
+           <!---- <ion-icon name="heart-circle-outline"></ion-icon>  -->
+          <div class="app-logo">
+            <img src="assets/img/BOVINET 1.png" alt="">
+        </div>
+        </div>
+        <div class="header-right">
+             <div class="ranch-info">
+            <span class="ranch-name">RANCHO LA VAQUITA FELIZ</span>
+          <span class="animal-count">{{ totalAnimals }} ANIMALES</span>
+          </div>
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
           <ion-icon name="log-out-outline" (click)="logout()" class="logout-btn"></ion-icon>
         </div>
       </div>
@@ -29,6 +42,7 @@
         </ion-searchbar>
         
         <ion-button 
+<<<<<<< HEAD
           [fill]="selectedSexFilter === 'Todos' ? 'solid' : 'outline'"
           [color]="selectedSexFilter === 'Todos' ? 'primary' : 'medium'"
           class="filter-button"
@@ -42,6 +56,20 @@
           (click)="openAddModal()">
           <ion-icon name="add-outline" slot="start"></ion-icon>
           Agregar
+=======
+         [fill]="selectedSexFilter === 'Todos' ? 'solid' : 'outline'"
+         [class.todos-btn]="selectedSexFilter === 'Todos'"
+         class="filter-button"
+         (click)="onSexFilterChange('Todos')">
+            Todos
+        </ion-button>
+        
+        <ion-button 
+          class="cambio-btn add-button"
+          (click)="openAddModal()">
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+           AGREGAR
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
         </ion-button>
       </div>
     </div>

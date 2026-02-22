@@ -1,3 +1,11 @@
 {
+<<<<<<< HEAD
   "typescript.preferences.autoImportFileExcludePatterns": ["@ionic/angular/common", "@ionic/angular"]
+=======
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@ionic/angular/common",
+    "@ionic/angular"
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive"
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 }

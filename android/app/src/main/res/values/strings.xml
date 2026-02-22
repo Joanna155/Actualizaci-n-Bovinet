@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+<<<<<<< HEAD
     <string name="app_name">bovine-app-v2</string>
+=======
+<string name="app_name">Bovinet</string>
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
     <string name="title_activity_main">bovine-app-v2</string>
     <string name="package_name">io.ionic.starter</string>
     <string name="custom_url_scheme">io.ionic.starter</string>

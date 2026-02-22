@@ -1,6 +1,11 @@
 import { Component } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { FormsModule } from "@angular/forms"
+<<<<<<< HEAD
+=======
+import { Preferences } from '@capacitor/preferences'; // Para guardar el token
+import { NavController } from '@ionic/angular'; // Recomendado para navegación limpia
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 import { Router } from "@angular/router"
 import {
   IonContent,
@@ -36,6 +41,7 @@ export class LoginPage {
     private alertController: AlertController,
     private toastController: ToastController,
   ) {
+<<<<<<< HEAD
     addIcons({
       personOutline,
       lockClosedOutline,
@@ -44,6 +50,9 @@ export class LoginPage {
       eyeOffOutline,
       keyOutline,
     })
+=======
+    addIcons({personOutline,lockClosedOutline,logInOutline,eyeOutline,eyeOffOutline,keyOutline,});
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   }
 
   togglePasswordVisibility() {
@@ -88,6 +97,7 @@ export class LoginPage {
         position: "top",
       })
       await toast.present()
+<<<<<<< HEAD
       return
     }
 
@@ -115,3 +125,28 @@ export class LoginPage {
 }
 
 export default LoginPage
+=======
+      return;
+    }
+//Validación de credenciales
+    if (this.username.toLowerCase() === "ganadero" && this.password === "123456") {
+       
+      // 1. ✅ GUARDAR EL TOKEN PARA USO DE UNA SOLA VEZ
+      // Esto hace que el AuthGuard te deje pasar en el futuro
+      const userData = {
+    username: this.username,
+    role: 'administrador',
+    lastLogin: new Date().toISOString()
+  };
+
+  // Guardamos el token y el perfil
+  await Preferences.set({ key: 'userToken', value: 'token_fijo' });
+  await Preferences.set({ key: 'userData', value: JSON.stringify(userData) });
+
+  this.router.navigate(["/tabs/tab1"], { replaceUrl: true });
+}
+    
+  } 
+  else: any  }
+    // ... (tu código de error de credenciales)
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f

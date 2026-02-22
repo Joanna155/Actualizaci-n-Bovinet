@@ -160,6 +160,10 @@ export class Tab4Page implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.currentUser = this.authService.getCurrentUser() || "Usuario";
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
     await this.loadNotifications();
     await this.loadAppInfo();
     await this.notificationService.initialize();

@@ -1,7 +1,13 @@
 // ===== VARIABLES Y COLORES =====
+<<<<<<< HEAD
 $primary-green: #2dd36f;
 $dark-green: #1e9c4f;
 $header-green: #A4C49A;
+=======
+$primary-green: #245838;
+$dark-green: #337c4f;
+$header-green: #05642d;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 $light-gray: #f8f9fa;
 $border-gray: #e9ecef;
 $text-dark: #2c3e50;
@@ -20,12 +26,46 @@ $text-light: #6c757d;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+<<<<<<< HEAD
 
   .header-left {
+=======
+  padding: 0 10px;
+  min-height: 30px;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
     font-size: 1.2rem;
     font-weight: bold;
   }
 
+<<<<<<< HEAD
+=======
+   }
+  .app-logo {
+      display: flex;
+      align-items: center;
+      margin: auto;
+      padding: auto;
+      line-height: 0;
+   
+  img { 
+    height: 350px;
+    max-height: 70px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    padding: 0%;
+    transition: none;
+   }
+  }
+   
+
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   .header-right {
     display: flex;
     align-items: center;
@@ -49,7 +89,11 @@ $text-light: #6c757d;
       }
     }
   }
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 
 // ===== CONTENEDOR PRINCIPAL =====
 .main-container {
@@ -78,21 +122,41 @@ $text-light: #6c757d;
       --box-shadow: none;
       --color: #{$text-dark};
     }
+<<<<<<< HEAD
  // Botón: Todos
     .filter-button {
       background: #912121;
+=======
+
+    .filter-button {
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
       --border-radius: 12px;
       height: 44px;
       min-width: 70px;
       font-size: 0.9rem;
     }
+<<<<<<< HEAD
 // Botón: +Agregar
     .add-button {
       background: #5c0847;
+=======
+  .todos-btn { 
+    --background: linear-gradient(135deg, #4e8376 0%, #397447 100%);
+      --color: white;
+  }
+    .add-button {
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
       --border-radius: 12px;
       height: 44px;
       min-width: 100px;
       font-weight: 600;
+<<<<<<< HEAD
+=======
+       }
+       .cambio-btn { 
+        --background: linear-gradient(135deg, #014131 0%, #397447 100%);
+      --color: white;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
     }
   }
 }

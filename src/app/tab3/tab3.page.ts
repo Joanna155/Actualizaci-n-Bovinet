@@ -997,7 +997,11 @@ closePartoModal() {
 
   onAnimalFilterChange(event: any) {
     this.selectedAnimalFilter = event.detail.value;
+<<<<<<< HEAD
     this.applys();
+=======
+    this.applyFilters();
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   }
 
   async corregirEstadosReproductivos() {
@@ -1604,6 +1608,7 @@ async markAsCompleted(evento: any) {
 
   getEventColor(tipo: string): string {
     switch (tipo) {
+<<<<<<< HEAD
       case "Celo": return "#eb445a";
       case "Vacunación": return "#3880ff";
       case "Inseminación": return "#2dd36f";
@@ -1611,6 +1616,16 @@ async markAsCompleted(evento: any) {
       case "Reto": return "#9c27b0";
       case "Test Preñez": return "#00bcd4";
       case "Revisión": return "#ff9800";
+=======
+      case "Celo": return "#FEF08A";
+      case "Vacunación": return "#BFDBFE";
+      case "Inseminación": return "#BBF7D0";
+      case "Parto": return "#EE4057";
+      case "Secado": return "#340a47ff";
+      case "Reto": return "#a94fb9ff";
+      case "Test Preñez": return "#00bcd4";
+      case "Revisión": return "#eeb155ff";
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
       default: return "#92949c";
     }
   }

@@ -13,6 +13,12 @@ dependencies {
     implementation project(':capacitor-app')
     implementation project(':capacitor-haptics')
     implementation project(':capacitor-keyboard')
+<<<<<<< HEAD
+=======
+    implementation project(':capacitor-network')
+    implementation project(':capacitor-preferences')
+    implementation project(':capacitor-splash-screen')
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
     implementation project(':capacitor-status-bar')
 
 }

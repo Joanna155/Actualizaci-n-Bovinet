@@ -1399,9 +1399,12 @@ async corregirEstadosMachosEnBD(): Promise<boolean> {
 }
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 // En database.service.ts
 
 

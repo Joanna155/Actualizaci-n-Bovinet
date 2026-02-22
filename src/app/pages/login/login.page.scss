@@ -20,10 +20,17 @@
 }
 
 .logo-container {
+<<<<<<< HEAD
   margin-bottom: 20px;
 }
 
  .cow-icon {
+=======
+  margin-bottom: 30px;
+}
+
+.cow-icon {
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   width: 120px;
   height: 120px;
   margin: 0 auto 20px;
@@ -36,22 +43,42 @@
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
+<<<<<<< HEAD
 .cow-icon img {      
   width: 80px;
   height: 80px;
   object-fit: contain;
   }  
 .app-title {
+=======
+.cow-icon img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.app-title {
+  font-family: 'Times New Roman', Times, serif;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   font-size: 3rem;
   font-weight: 800;
   color: white;
   margin: 0 0 10px 0;
   text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+<<<<<<< HEAD
   letter-spacing: 1px;
   font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
 .app-subtitle {
+=======
+ transition: all 0.3s ease;
+
+}
+
+.app-subtitle {
+  font-family: 'Times New Roman', Times, serif;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;

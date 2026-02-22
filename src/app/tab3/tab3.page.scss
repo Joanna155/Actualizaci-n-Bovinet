@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Archivo restaurado a versión mínima por el asistente */
 :host {
   display: block;
@@ -34,6 +35,393 @@
 /* Fin de la versión mínima 
   margin-bottom: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);*/
+=======
+.calendar-content {
+  --background: linear-gradient(135deg, #245838 0%, #337c4f 100%);
+  padding: 10px;
+}
+
+// Header mejorado
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: auto;
+  width: 100%;
+  padding: 0 10px;
+  min-height: 30px;
+
+  .header-left {
+      .app-logo {
+    display: flex;
+   align-items: center;
+   margin: auto;
+    padding: auto;
+    line-height: 0;
+  
+
+    img { 
+    height: 350px;
+    max-height: 70px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    padding: 0%;
+    transition: none;
+   }
+     }
+   }
+   
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+
+    .event-count {
+      font-weight: 600;
+    }
+
+    .logout-btn {
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+//BOTÓN DE REGISTRAR EVENTOS
+.register-event-btn {
+ --background: linear-gradient(135deg,  #013014 0%, #02240e 100%);
+    --color: #000000 !important;
+    --border-radius: 8px;
+    font-weight: 600;
+    text-transform: none !important;
+    
+    ion-icon {
+        color: #000000 !important;
+    }
+}
+
+// Contenedor principal
+.main-container {
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin: 5px 0;
+}
+
+// Header del calendario
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e9ecef;
+
+  .calendar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0;
+  }
+
+  .register-event-btn {
+    --background: linear-gradient(135deg, #2dd36f 0%, #1e9c4f 100%);
+    --color: #000000 !important;
+    --border-radius: 15px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(45, 211, 111, 0.4);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45, 211, 111, 0.5);
+    }
+
+    ion-icon {
+      color: #000000 !important;
+      font-size: 1.1rem;
+    }
+
+    span {
+      color: #000000 !important;
+      font-weight: 600 !important;
+    }
+  }
+}
+
+// Acciones rápidas
+.quick-actions-section {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 16px 0;
+  }
+
+  .quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+
+    ion-button {
+      height: 56px;
+      font-weight: 600;
+      text-transform: none;
+      --border-radius: 8px;
+
+      ion-icon {
+        font-size: 24px;
+        margin-right: 8px;
+      }
+    }
+
+    .parto-btn {
+      --background: linear-gradient(135deg, #B21E65 0%, #E94E77 100%);
+      --color: white;
+      
+      ion-icon {
+        color: white;
+      }
+    }
+
+    .reproduccion-btn {
+    --background: linear-gradient(135deg, #2A51B4 0%, #5DCEEE 100%);
+      --color: white;
+       }
+          }
+        ion-icon {
+        color: white;
+      }
+       }
+      .cambio-btn {
+      --background: linear-gradient(135deg, #218045 0%, #7EDFA3 100%);
+      --color: rgb(253, 253, 253);
+       }
+         
+        ion-icon {
+        color: white;
+      }
+       
+  
+
+// Estadísticas
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+
+  .stat-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    &.pending {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+      
+      .stat-icon {
+        background: #ffc409;
+      }
+    }
+
+    &.today {
+      background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+      
+      .stat-icon {
+        background: #17a2b8;
+      }
+    }
+
+    &.reprod {
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      
+      .stat-icon {
+        background: #2dd36f;
+      }
+    }
+
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      background: #6c757d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+
+      ion-icon {
+        font-size: 1.5rem;
+      }
+    }
+
+    .stat-info {
+      display: flex;
+      flex-direction: column;
+
+      .stat-number {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #2c3e50;
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-top: 2px;
+      }
+    }
+  }
+}
+
+// Segment personalizado
+.view-navigation {
+  padding: 15px 20px;
+  background: white;
+  border-bottom: 1px solid #e9ecef;
+
+  .custom-segment-container {
+    position: relative;
+    background: #f8f9fa;
+    border-radius: 25px;
+    padding: 4px;
+    display: flex;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+
+    .segment-option {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 2;
+      color: #6c757d;
+      font-weight: 500;
+
+      ion-icon {
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+
+      span {
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      &.active {
+        color: #2dd36f;
+        font-weight: 600;
+        transform: scale(1.02);
+
+        ion-icon {
+          color: #2dd36f;
+          transform: scale(1.1);
+        }
+
+        span {
+          color: #2dd36f;
+        }
+      }
+
+      &:hover:not(.active) {
+        color: #495057;
+        background: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    .segment-indicator {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: calc(50% - 4px);
+      height: calc(100% - 8px);
+      background: linear-gradient(135deg, #2dd36f 0%, #1e9c4f 100%);
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(45, 211, 111, 0.3);
+      z-index: 1;
+
+      &.calendar-active {
+        transform: translateX(100%);
+      }
+    }
+  }
+}
+
+// Filtros
+.filters-section {
+  margin-bottom: 20px;
+
+  .filter-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+
+    .custom-select {
+      --background: #f8f9fa;
+      --border-radius: 12px;
+      --padding-start: 15px;
+      --padding-end: 15px;
+      --color: #2c3e50;
+      --placeholder-color: #6c757d;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+
+      &:focus-within {
+        --background: white;
+        border-color: #2dd36f;
+        box-shadow: 0 0 0 3px rgba(45, 211, 111, 0.1);
+      }
+    }
+  }
+}
+
+// Leyenda de los tipos de eveontos 
+.legend-section {
+  background: linear-gradient(135deg, #19332d 0%, #0e5543 100%);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 
   .legend-grid {
     display: grid;
@@ -52,6 +440,7 @@
         margin-bottom: 5px;
 
         &.celo {
+<<<<<<< HEAD
           background: #eb445a;
         }
 
@@ -73,6 +462,29 @@
 
         &.reto {
           background: #9c27b0;
+=======
+          background: #FEF08A;
+        }
+
+        &.vacunacion {
+          background: #BFDBFE;
+        }
+
+        &.inseminacion {
+          background: #BBF7D0;
+        }
+
+        &.parto {
+          background: #EE4057;
+        }
+
+        &.secado {
+          background: #c76f4f;
+        }
+
+        &.reto {
+          background: #9f54c2;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
         }
 
         &.test-prenez {
@@ -101,11 +513,16 @@
           
           &.programada,
           &.programado {
+<<<<<<< HEAD
             color: #74b9ff;
+=======
+            color: #BFDBFE;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
           }
 
           &.realizada,
           &.realizado {
+<<<<<<< HEAD
             color: #00b894;
           }
 
@@ -115,12 +532,27 @@
 
           &.alerta {
             color: #e17055;
+=======
+            color: #469261;
+          }
+
+          &.pendiente {
+            color: #FEF08A;
+          }
+
+          &.alerta {
+            color: #EE4057;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
           }
         }
       }
     }
   }
+<<<<<<< HEAD
 
+=======
+}
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 
 // Contenedor de eventos
 .events-container {
@@ -1185,6 +1617,9 @@ ion-item {
   50% { opacity: 0.7; }
   100% { opacity: 1; }
 }
+<<<<<<< HEAD
  
 
  
+=======
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f

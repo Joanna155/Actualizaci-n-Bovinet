@@ -349,10 +349,17 @@ private calculateAgeInYears(fechaNacimiento: string): number {
 
   public getEventColor(tipo: string): string {
     const colors: {[key: string]: string} = {
+<<<<<<< HEAD
       'Celo': '#eb445a',
       'Vacunación': '#3880ff',
       'Inseminación': '#2dd36f',
       'Parto': '#ffc409'
+=======
+      'Celo': '#FEF08A',
+      'Vacunación': '#BFDBFE',
+      'Inseminación': '#BBF7D0',
+      'Parto': '#EE4057'
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
     };
     return colors[tipo] || '#92949c';
   }

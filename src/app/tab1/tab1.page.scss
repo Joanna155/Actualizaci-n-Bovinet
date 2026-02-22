@@ -1,5 +1,6 @@
 $primary-green: #377d6c;
 $secondary-green: #1e9c4f;
+<<<<<<< HEAD
 $light-green: #A4C49A;
 $dark-text: #2c3e50;
 $medium-text: #6c757d;
@@ -7,6 +8,16 @@ $light-bg: #f8f9fa;
 
 .dashboard-content {
   --background: linear-gradient(135deg, $primary-green 0%, $secondary-green 100%);
+=======
+$light-green: #db6e08;
+$dark-text: #2c3e50;
+$medium-text: #6c757d;
+$light-bg: #f8fafa;
+
+.dashboard-content {
+  //Actualización de color: 
+  --background: linear-gradient(135deg, #245838 0%, #337c4f 100%);
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   padding: 10px;
 }
 
@@ -14,6 +25,7 @@ $light-bg: #f8f9fa;
 .header-content {
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD
   align-items: center;
   width: 100%;
   padding: 0 10px;
@@ -30,6 +42,33 @@ $light-bg: #f8f9fa;
       border-radius: 8px;
       backdrop-filter: blur(10px);
     }
+=======
+  align-items: auto;
+  width: 100%;
+  padding: 0 10px;
+  min-height: 30px;
+
+  .header-left {  
+    .app-logo {
+      display: flex;
+      align-items: center;
+      margin: auto;
+      padding: auto;
+      line-height: 0;
+
+   img { 
+    height:250px;
+    max-height: 70px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    padding: 0%;
+    transition: none;
+   }
+
+      }
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   }
 
   .header-right {

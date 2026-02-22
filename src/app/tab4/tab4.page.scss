@@ -1,32 +1,54 @@
 // SOLUCIÓN ESPECÍFICA PARA EL ESPACIO NEGRO
 .notifications-content {
+<<<<<<< HEAD
   --background: linear-gradient(135deg, #2dd36f 0%, #1e9c4f 100%);
+=======
+   --background: linear-gradient(135deg, #245838 0%, #337c4f 100%);
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
   padding: 10px;
   overflow-x: hidden !important;
   width: 100% !important;
   max-width: 100% !important;
 }
+<<<<<<< HEAD
 
 //Define el tamaño para el icono
+=======
+//Define el tamaño de icono 
+
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 .icono-vaca-stat { 
   width: 115px;
   height: 100px;
   margin-right: 3%;
+<<<<<<< HEAD
    }
+=======
+
+   }
+
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
    .stat-item {
     display: flex;
     align-items: center;
    }
 
+<<<<<<< HEAD
    img {
     height: 90px;
     max-height: 250px;
+=======
+  img {
+  height:250px;
+    max-height: 70px;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
     width: auto;
     object-fit: contain;
     display: block;
     margin: 0;
     padding: 0%;
     transition: none;
+<<<<<<< HEAD
 
   }
 
@@ -56,6 +78,55 @@
 
     .notification-count {
       font-weight: 600;
+=======
+   
+}
+    
+.icono-calendario-stat {
+  width: 110px;
+  height: 80px;
+  margin-right: 0px;
+}
+.stat-item {
+    display: flex;
+    align-items: center;
+   }
+    
+
+// Header mejorado
+.header-content {
+ display: flex;
+ justify-content: space-between; // Empuja todo al inicio (izquierda)
+  align-items: auto;
+  width: 100%;
+  padding: 0px 10px; 
+  min-height: 30px;
+  background-color: #a3c5a0;
+  gap: 10px; // Espacio pequeño entre el logo y el texto
+  display: flex;
+
+}
+
+.header-left {
+   .app-logo {
+      display: flex;
+      align-items: center;
+      margin: auto;
+      padding: auto;
+      line-height: 0;
+  }
+}
+ 
+
+  .header-right {
+  display: flex;
+  align-items: center;
+  gap:15px 
+  }
+
+    .notification-count {
+      font-weight: 400;
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
     }
 
     ion-icon {
@@ -79,8 +150,13 @@
         transform: scale(0.95);
       }
     }
+<<<<<<< HEAD
   }
 }
+=======
+  
+
+>>>>>>> 8d9726f7d170df52a39b0a228a952654c5f3a85f
 
 .segments-container {
   background: white;
